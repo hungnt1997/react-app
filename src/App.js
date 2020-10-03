@@ -48,15 +48,15 @@ class App extends React.Component {
         })
 
         return (
-            <ul> {result}</ul>
-            // <div>
+            // <ul> {result}</ul>
+            <div>
                 
-            // /* <Table
-            //     charactersData={this.state.characters}
-            //     removeCharactor={this.removeCharactor}
-            // />
-            // <Form   handleSubmit={this.handleSubmit}/> 
-            // </div>
+            <Table
+                charactersData={this.state.characters}
+                removeCharactor={this.removeCharactor}
+            />
+            <Form   handleSubmit={this.handleSubmit}/> 
+            </div>
          
         )
     }
