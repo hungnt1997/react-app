@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './app.js';
+import NameForm from './form.js'
+// import App from './app.js';
+import LoginControl from  './login.js';
 class Square extends React.Component {
     render() {
       return (
@@ -124,7 +126,7 @@ class Square extends React.Component {
   // ========================================
   
   ReactDOM.render(
-    <App />,
+    <NameForm />,
     document.getElementById('root')
   );
 
