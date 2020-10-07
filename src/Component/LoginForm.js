@@ -47,29 +47,54 @@ const useStyle = makeStyles((theme) => ({
   },
 }))
 
+
 export default function Login() {
+  const [{ usernname, password }, setValue] = React.useState({ usernname: '', password: '' });
   const classes = useStyle();
+  const handleUserNameChange = (e) => {
+    const oldPassword = password
+    setValue({
+      usernname: e.target.value,
+      password: oldPassword
+    })
+    console.log(usernname, password)
+  }
+  const hanlderPasswordChange = (e) => {
+    console.log(usernname, password)
+    const oldUserName = usernname
+    setValue({
+      usernname: oldUserName,
+      password: e.target.value
+    })
+  }
+  const afterSubmission = event => {
+    console.log(usernname, password)
+    event.preventDefault();
+  }
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
+        <Avatar className={classes.avatar} >
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={afterSubmission}>
           <TextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
             id="email"
-            label="Email Address"
             name="email"
+            label="Email Address"
             autoComplete="email"
             autoFocus
+            value={usernname}
+            onChange={(e) => handleUserNameChange(e)}
           />
           <TextField
             variant="outlined"
@@ -80,6 +105,8 @@ export default function Login() {
             label="Password"
             type="password"
             id="password"
+            value={password}
+            onChange={(e) => hanlderPasswordChange(e)}
             autoComplete="current-password"
           />
           <FormControlLabel
@@ -108,7 +135,7 @@ export default function Login() {
             </Grid>
           </Grid>
         </form>
-        
+
       </div>
       <Box mt={8}>
         <CopyRight />
