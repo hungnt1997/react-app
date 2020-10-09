@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { useHistory } from "react-router-dom";
 import { Button } from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -15,7 +16,6 @@ import Container from '@material-ui/core/Container';
 const style = {
   margin: 15,
 };
-
 
 function CopyRight() {
   return <Typography variant="body2" color="textSecondary" align="center">
@@ -50,6 +50,8 @@ const useStyle = makeStyles((theme) => ({
 
 export default function Login() {
   const [{ usernname, password }, setValue] = React.useState({ usernname: '', password: '' });
+
+  const history = useHistory();
   const classes = useStyle();
   const handleUserNameChange = (e) => {
     const oldPassword = password
@@ -68,8 +70,10 @@ export default function Login() {
     })
   }
   const afterSubmission = event => {
+    
     console.log(usernname, password)
     event.preventDefault();
+    history.push("/");
   }
 
   return (
@@ -140,9 +144,6 @@ export default function Login() {
       <Box mt={8}>
         <CopyRight />
       </Box>
-
-
-
     </Container>
   )
 }

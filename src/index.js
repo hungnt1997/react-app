@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 // import App from './app.js';
-import  Login from './Component/LoginForm.js'
+import  App from "./Routing/Rounting.js"
   ReactDOM.render(
-    <Login />,
+    <App />,
     document.getElementById('root')
   );
