@@ -13,6 +13,10 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { AlertAddAlert } from 'material-ui/svg-icons';
+import { allReducer } from "../Reducer";
+import { useSelector, useDispatch } from "react-redux";
+import { changeUserName, changePassword } from "../Action"
 const style = {
   margin: 15,
 };
@@ -49,31 +53,19 @@ const useStyle = makeStyles((theme) => ({
 
 
 export default function Login() {
-  const [{ usernname, password }, setValue] = React.useState({ usernname: '', password: '' });
-
+  const { userName , passWord} = useSelector(state => state.loggin);
   const history = useHistory();
   const classes = useStyle();
-  const handleUserNameChange = (e) => {
-    const oldPassword = password
-    setValue({
-      usernname: e.target.value,
-      password: oldPassword
-    })
-    console.log(usernname, password)
-  }
-  const hanlderPasswordChange = (e) => {
-    console.log(usernname, password)
-    const oldUserName = usernname
-    setValue({
-      usernname: oldUserName,
-      password: e.target.value
-    })
-  }
+  const dispatch = useDispatch()
   const afterSubmission = event => {
-    
-    console.log(usernname, password)
     event.preventDefault();
-    history.push("/");
+    if (userName === "hung" && passWord === "123456") {
+      history.push("/");
+    }
+    else {
+      console.log(userName, passWord)
+      console.log("loggin fail")
+    }
   }
 
   return (
@@ -97,8 +89,8 @@ export default function Login() {
             label="Email Address"
             autoComplete="email"
             autoFocus
-            value={usernname}
-            onChange={(e) => handleUserNameChange(e)}
+            value={userName}
+            onChange={(e) => dispatch(changeUserName(e.target.value))}
           />
           <TextField
             variant="outlined"
@@ -109,8 +101,8 @@ export default function Login() {
             label="Password"
             type="password"
             id="password"
-            value={password}
-            onChange={(e) => hanlderPasswordChange(e)}
+            value={passWord}
+            onChange={(e) => dispatch(changePassword(e.target.value))}
             autoComplete="current-password"
           />
           <FormControlLabel
