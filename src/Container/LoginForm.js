@@ -13,10 +13,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { AlertAddAlert } from 'material-ui/svg-icons';
-import { allReducer } from "../Reducer";
 import { useSelector, useDispatch } from "react-redux";
-import { changeUserName, changePassword } from "../Action"
+import { changeUserName, changePassword, logginSucess } from "../Action"
 const style = {
   margin: 15,
 };
@@ -53,13 +51,14 @@ const useStyle = makeStyles((theme) => ({
 
 
 export default function Login() {
-  const { userName , passWord} = useSelector(state => state.loggin);
+  const { userName , passWord} = useSelector(state => state.loginReducer);
   const history = useHistory();
   const classes = useStyle();
   const dispatch = useDispatch()
   const afterSubmission = event => {
     event.preventDefault();
     if (userName === "hung" && passWord === "123456") {
+      dispatch(logginSucess)
       history.push("/");
     }
     else {

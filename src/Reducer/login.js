@@ -1,13 +1,13 @@
-import { createStore } from 'redux';
 import { UserAction } from "../Action"
 const UserInitState = {
     userName: "",
     passWord: ""
 }
+const LoginInitState = {
+    isLoggin: false
+}
 
-
-
-const loginReducer = (state = UserInitState, action) => {
+export const loginReducer = (state = UserInitState, action) => {
     switch (action.type) {
         case UserAction.ChangeUserName:
             return {
@@ -23,5 +23,14 @@ const loginReducer = (state = UserInitState, action) => {
             return state;
     }
 }
+export const logginStatusReducer = ( state = LoginInitState, action ) =>{
+    switch( action.type){
+        case "LOGGIN_SUCESS": {
+            return {  isLoggin: true}
+        }
+        default:
+            return state 
+    }
+}
 
-export default loginReducer
+

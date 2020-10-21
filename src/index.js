@@ -6,23 +6,18 @@ import rootReducer from './Reducer'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import React from 'react'
-import Footer from './Component/Footer'
-import AddTodo from './Container/AddTodo'
-import VisibleTodoList from './Container/VisibleTodoList'
-import {Increment, Decrement} from './Action'
-import {useSelector, useDispatch} from "react-redux";
-import Login from "./Container/Login";
-import DataGridDemo from './Component/DataGrid'
+import Login from "./Container/LoginForm";
+import DataGridDemo  from './Component/DataGrid'
 import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link,
     Redirect
 } from "react-router-dom";
 
 
 const App = () => (
+  
   <div className="app-routes">
       <Router>
           <Switch>
